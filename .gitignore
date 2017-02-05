@@ -1,0 +1,6 @@
+
+nohup.out
+**/.fuse_hidden*
+node_modules/**
+docs/gen
+docs/gen/**

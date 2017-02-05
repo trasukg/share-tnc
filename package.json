@@ -1,0 +1,34 @@
+{
+  "name": "share-tnc",
+  "version": "1.0.0",
+  "description": "Share a Serial TNC to KISS over TCP/IP",
+  "main": "index.js",
+  "scripts": {},
+  "bin": {
+    "share-tnc": "./share-tnc.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trasukg/share-tnc.git"
+  },
+  "keywords": [
+    "aprs",
+    "tnc",
+    "kiss",
+    "TCP/IP"
+  ],
+  "author": "Greg Trasuk VA3TSK",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/trasukg/share-tnc/issues"
+  },
+  "homepage": "https://github.com/trasukg/share-tnc#readme",
+  "devDependencies": {
+    "jasmine": "^2.5.3"
+  },
+  "dependencies": {
+    "node-getopt": "^0.2.3",
+    "serialport": "^4.0.7",
+    "utils-for-aprs": "^2.1.1"
+  }
+}
