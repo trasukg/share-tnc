@@ -1,0 +1,11 @@
+
+[Unit]
+Description=Share serial-connected TNC to KISS-over-TCP
+
+[Service]
+ExecStart=/usr/local/bin/share-tnc /dev/ttyUSB0 8001 --baud=1200
+Restart=always
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
