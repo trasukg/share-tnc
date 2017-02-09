@@ -23,11 +23,11 @@ _Note:_ 'serialport' doesn't like to installed in the usual way with 'sudo'
 for more information).  If you need to use 'sudo' to install globally, use
 the following:
 
-    sudo npm install -g --unsafe-perm share-tnc
+    sudo npm install -g --unsafe-perm share-tnc  
 
 If you don't need 'sudo', then
 
-    npm install -g share-tnc
+    npm install -g share-tnc  
 
 ## Side-note: Installing Node.js on the Raspberry Pi
 
@@ -37,22 +37,22 @@ old.  Your best bet is to install from the 'nodejs.org' binary downloads.
 - Unpack it, and then copy all the directories in the package to /usr/local  
 
 Example:  
-    curl -O https://nodejs.org/dist/v6.9.5/node-v6.9.5-linux-armv6l.tar.xz
-    tar xf node-v6.9.5-linux-armv6l.tar.xz
-    cp -r node-v6.9.5-linux-armv6l.tar.xz/bin /usr/local
-    cp -r node-v6.9.5-linux-armv6l.tar.xz/include /usr/local
-    cp -r node-v6.9.5-linux-armv6l.tar.xz/share /usr/local
-    cp -r node-v6.9.5-linux-armv6l.tar.xz/lib /usr/local
+    curl -O https://nodejs.org/dist/v6.9.5/node-v6.9.5-linux-armv6l.tar.xz  
+    tar xf node-v6.9.5-linux-armv6l.tar.xz  
+    cp -r node-v6.9.5-linux-armv6l.tar.xz/bin /usr/local  
+    cp -r node-v6.9.5-linux-armv6l.tar.xz/include /usr/local  
+    cp -r node-v6.9.5-linux-armv6l.tar.xz/share /usr/local  
+    cp -r node-v6.9.5-linux-armv6l.tar.xz/lib /usr/local  
 
 # Usage
 
 ## Command Line - Sharing the TNC
 
-    share-tnc <serial-device> <port> [--baud <baudrate>]
+    share-tnc <serial-device> <port> [--baud <baudrate>]  
 
     e.g.
 
-    share-tnc /dev/ttyUSB0 8001 --baud 1200
+    share-tnc /dev/ttyUSB0 8001 --baud 1200  
 
 ### Multiple Connections
 
