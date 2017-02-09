@@ -54,6 +54,22 @@ Example:
 
     share-tnc /dev/ttyUSB0 8001 --baud 1200
 
+### Multiple Connections
+
+If more than one client connects to share-tnc's server port, the system simulates
+what would happen if each client had a radio and TNC to itself, but could hear
+the other clients.  When a client sends a packet, that packet is not echoed back to
+the client (because you wouldn't hear while you're transmitting),
+but it _is_ sent to every other client.  Packets received on the
+physical radio/tnc are relayed to every client that's connected to share-tnc.
+
+Note that this behaviour may confuse clients that are trying
+to use the same callsign-ssid
+combo, and may give undesired on-air results.  For instance if you had two APRS clients
+configured to use VA3ZZZ-1, they would both acknowledge a message packet that was
+received.  So, don't do that.  If you have more than one APRS client hooked up, they
+should generally have different callsigns or ssids.  
+
 ## Command Line - Monitoring the On-Air APRS Traffic
 
     watch-aprs <host>:<port>
