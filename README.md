@@ -118,3 +118,4 @@ The phrase APRS is a registered trademark of Bob Bruninga WB4APR.
 # Release Notes
 
 1.0.0 - February 8, 2017 - First Release  
+1.0.1 - March 10, 2017 - Fixed a bug where the only baud rate actually used was 1200  
