@@ -48,7 +48,7 @@ if (opt.argv.length != 2) {
 
 var device=opt.argv[0];
 var port=opt.argv[1];
-var baud= opt.options.baud?parseInt(opt.options.git baud):1200
+var baud= opt.options.baud?parseInt(opt.options.baud):1200
 
 //Create the server socket endpoint
 var serverEndpoint=new ServerSocketKISSFrameEndpoint("0.0.0.0", port);
