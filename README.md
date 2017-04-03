@@ -121,3 +121,4 @@ The phrase APRS is a registered trademark of Bob Bruninga WB4APR.
 1.0.1 - March 10, 2017 - Fixed a bug where the only baud rate actually used was 1200  
 1.0.2 - April 3, 2017 - Updated to require the latest utils-for-aprs, which should
 now include the 'ws' dependency properly.  
+1.0.3 - April 3, 2017 - Updated utils-for-aprs to call out the 'bluebird' dependency.
