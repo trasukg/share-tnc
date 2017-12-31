@@ -39,10 +39,10 @@ old.  Your best bet is to install from the 'nodejs.org' binary downloads.
 Example:  
     curl -O https://nodejs.org/dist/v6.9.5/node-v6.9.5-linux-armv6l.tar.xz  
     tar xf node-v6.9.5-linux-armv6l.tar.xz  
-    cp -r node-v6.9.5-linux-armv6l.tar.xz/bin /usr/local  
-    cp -r node-v6.9.5-linux-armv6l.tar.xz/include /usr/local  
-    cp -r node-v6.9.5-linux-armv6l.tar.xz/share /usr/local  
-    cp -r node-v6.9.5-linux-armv6l.tar.xz/lib /usr/local  
+    cp -r node-v6.9.5-linux-armv6l/bin /usr/local  
+    cp -r node-v6.9.5-linux-armv6l/include /usr/local  
+    cp -r node-v6.9.5-linux-armv6l/share /usr/local  
+    cp -r node-v6.9.5-linux-armv6l/lib /usr/local  
 
 # Usage
 
@@ -90,8 +90,8 @@ Typical usage would be something like:
 - Copy 'share-tnc.service' into /usr/local/lib/systemd/system  
 - Edit /usr/local/lib/systemd/system/share-tnc.service to reflect the device port,
 baud rate and KISS-TCP port that you want to use.  
-- sudo servicectl enable share-tnc  
-- sudo servicectl start share-tnc  
+- sudo systemctl enable share-tnc  
+- sudo systemctl start share-tnc  
 
 ## Logging
 
