@@ -1,12 +1,11 @@
 {
   "name": "share-tnc",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Share a Serial TNC to KISS over TCP/IP",
   "main": "index.js",
   "scripts": {},
   "bin": {
-    "share-tnc": "./share-tnc.js",
-    "watch-aprs": "./watch-aprs.js"
+    "share-tnc": "./share-tnc.js"
   },
   "repository": {
     "type": "git",

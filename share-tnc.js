@@ -31,6 +31,7 @@ var util=require('util');
 var ServerSocketKISSFrameEndpoint=
   require('utils-for-aprs').ServerSocketKISSFrameEndpoint;
 var SerialKISSFrameEndpoint=require('utils-for-aprs').SerialKISSFrameEndpoint;
+var SocketKISSFrameEndpoint=require('utils-for-aprs').SocketKISSFrameEndpoint;
 
 var opt=require('node-getopt').create([
   ['', 'baud[=BAUD]', 'baud rate']
@@ -52,7 +53,21 @@ var baud= opt.options.baud?parseInt(opt.options.baud):1200
 
 //Create the server socket endpoint
 var serverEndpoint=new ServerSocketKISSFrameEndpoint("0.0.0.0", port);
-var serialEndpoint=new SerialKISSFrameEndpoint(device, {baudrate: baud});
+
+var targetEndpoint=null;
+
+// If the device happens to look like "host:port" then create a socket endpoint.
+var res=/([^\:]+):([0-9]+)/.exec(device);
+if (res) {
+  var host=res[1];
+  var port=res[2];
+  targetEndpoint=new SocketKISSFrameEndpoint();
+  targetEndpoint.host=host;
+  targetEndpoint.port=port;
+} else {
+  targetEndpoint=new SerialKISSFrameEndpoint(device, {baudrate: baud});
+}
+
 
 /* All connections are put into a Set, which lets us use forEach()
 */
@@ -82,19 +97,19 @@ serverEndpoint.on('error', function(err) {
   console.log("Error on server endpoint:" + err);
 });
 
-serialEndpoint.on('error', function(err) {
+targetEndpoint.on('error', function(err) {
   console.log("Error on serial TNC endpoint:" + err);
 });
 
-serialEndpoint.on('connect', function(connection) {
-  console.log("Connected to serial TNC on " + device + " at " + baud + " baud.");
+targetEndpoint.on('connect', function(connection) {
+  console.log("Connected to TNC on " + device + (res?"":" at " + baud + " baud."));
   allConnections.add(connection);
   connection.on('data', function(frame) {
     relayToAllBut(connection, frame);
   });
   connection.on('disconnect', function() {
     allConnections.delete(connection);
-    console.log('Serial TNC connection was closed');
+    console.log('TNC connection was closed');
   });
 });
 
@@ -110,9 +125,9 @@ var relayToAllBut=function(source, frame) {
 }
 
 /* Turn on the endpoints.
-  - Serial Endpoint will attempt to connect to TNC
+  - Target Endpoint will attempt to connect to TNC
   - ServerSocketKISSFrameEndpoint will open the server port and start
   accepting connections
 */
-serialEndpoint.enable();
+targetEndpoint.enable();
 serverEndpoint.enable();

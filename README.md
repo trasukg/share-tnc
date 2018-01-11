@@ -48,11 +48,20 @@ Example:
 
 ## Command Line - Sharing the TNC
 
-    share-tnc <serial-device> <port> [--baud <baudrate>]  
+    share-tnc <device> <port> [--baud <baudrate>]  
 
     e.g.
 
     share-tnc /dev/ttyUSB0 8001 --baud 1200  
+
+You can also share out a KISS-over-TCP connection like DireWolf (since DireWolf
+only supports one connection at a time):
+
+    share-tnc <host>:<port> <port>  
+
+    e.g.  
+
+    share-tnc localhost:8001 8002
 
 ### Multiple Connections
 
@@ -123,3 +132,4 @@ The phrase APRS is a registered trademark of Bob Bruninga WB4APR.
 now include the 'ws' dependency properly.  
 1.0.3 - April 3, 2017 - Updated utils-for-aprs to call out the 'bluebird' dependency.
 1.0.4 - April 3, 2017 - Updated to latest utils-for-aprs  
+1.0.5 - January 11, 2018 - Added capability to share a KISS-over-TCP port.  
