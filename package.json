@@ -29,6 +29,6 @@
   "dependencies": {
     "node-getopt": "^0.2.3",
     "serialport": "^4.0.7",
-    "utils-for-aprs": "^2.2.5"
+    "utils-for-aprs": "^2.2.8"
   }
 }

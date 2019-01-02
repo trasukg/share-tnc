@@ -1,4 +1,5 @@
 
+/package-lock.json
 nohup.out
 **/.fuse_hidden*
 node_modules/**
