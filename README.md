@@ -133,3 +133,5 @@ now include the 'ws' dependency properly.
 1.0.3 - April 3, 2017 - Updated utils-for-aprs to call out the 'bluebird' dependency.
 1.0.4 - April 3, 2017 - Updated to latest utils-for-aprs  
 1.0.5 - January 11, 2018 - Added capability to share a KISS-over-TCP port.  
+1.0.6 - February 17, 2019 - Updated to latest utils-for-aprs to fix a framing
+issue.  

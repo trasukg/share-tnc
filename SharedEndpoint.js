@@ -131,10 +131,10 @@ const SharedEndpoint=function(options) {
 util.inherits(SharedEndpoint, EventEmitter);
 
 SharedEndpoint.prototype.relayToAllBut=function(source, frame) {
-  console.log("Got frame from " + source.options);
+  //console.log("Got frame from " + source);
   this.allConnections.forEach(connection => {
     if (connection === source) {
-      console.log("Skipping destination " + connection);
+      //console.log("Skipping destination " + connection);
     } else {
       connection.data(frame);
     }

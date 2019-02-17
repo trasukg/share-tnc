@@ -69,7 +69,7 @@ describe("Share-tnc's handling of control codes", () => {
       //It should come through verbatim
       // 1st byte should be 1
       expect(receivedData[0]).toBe(0x01);
-      expect(receivedData[1]).toBe(0x50);  
+      expect(receivedData[1]).toBe(0x50);
     })
     .then(done)
   });
