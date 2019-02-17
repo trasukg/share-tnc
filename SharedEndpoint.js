@@ -89,7 +89,7 @@ const SharedEndpoint=function(options) {
     );
     this.allConnections.add(connection);
     connection.on('data', frame =>  {
-      relayToAllBut(connection,frame);
+      this.relayToAllBut(connection,frame);
     });
     connection.on('close', () => {
       this.allConnections.delete(connection);
@@ -131,10 +131,10 @@ const SharedEndpoint=function(options) {
 util.inherits(SharedEndpoint, EventEmitter);
 
 SharedEndpoint.prototype.relayToAllBut=function(source, frame) {
-  //console.log("Got frame from " + source);
+  console.log("Got frame from " + source.options);
   this.allConnections.forEach(connection => {
     if (connection === source) {
-      //console.log("Skipping destination " + connection);
+      console.log("Skipping destination " + connection);
     } else {
       connection.data(frame);
     }
