@@ -135,3 +135,5 @@ now include the 'ws' dependency properly.
 1.0.5 - January 11, 2018 - Added capability to share a KISS-over-TCP port.  
 1.0.6 - February 17, 2019 - Updated to latest utils-for-aprs to fix a framing
 issue.  
+1.0.7 - August 9, 2020 - Update to latest serialport, so it compiles under the
+latest nodejs on raspbian.  
