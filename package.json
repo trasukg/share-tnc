@@ -1,6 +1,6 @@
 {
   "name": "share-tnc",
-  "version": "1.0.7",
+  "version": "1.0.8-alpha",
   "description": "Share a Serial TNC to KISS over TCP/IP",
   "main": "index.js",
   "scripts": {},
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "node-getopt": "^0.2.3",
-    "serialport": "^9.0.0",
-    "utils-for-aprs": "^2.2.10"
+    "serialport": "10.5.0",
+    "utils-for-aprs": "3.0.0"
   }
 }
