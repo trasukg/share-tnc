@@ -28,37 +28,57 @@ under the License.
 */
 var path=require('path');
 var util=require('util');
+const yargs = require('yargs/yargs')
+const { hideBin } = require('yargs/helpers')
 var SharedEndpoint=require("./SharedEndpoint");
 
-var opt=require('node-getopt').create([
-  ['', 'baud[=BAUD]', 'baud rate']
-]).bindHelp().parseSystem();
-
-if (opt.argv.length != 2) {
-  console.log("Usage: share-tnc <device> <port> --baud=BAUD");
-  return;
+const startup = function(argv){
+  console.log(argv);
+  var path=argv.path;
+  var port= argv.port;
+  var baud= argv.baud;
+  
+  var sharedEndpoint=new SharedEndpoint( {
+    path: path,
+    port: port,
+    baud: baud
+  });
+  
+  
+  sharedEndpoint.on("listen", message => console.log(message));
+  sharedEndpoint.on("clientConnect", message => console.log(message));
+  sharedEndpoint.on("tncConnect", message => console.log(message));
+  sharedEndpoint.on("tncDisconnect", message => console.log(message));
+  sharedEndpoint.on("clientDisconnect", message => console.log(message));
+  sharedEndpoint.on("error", message => console.log(message));
+  
+  sharedEndpoint.enable();
+  
 }
+
+const argv = yargs(hideBin(process.argv))
+  .command(
+    '$0 <path> <port>', 
+    'Setup a shared TNC', 
+    (yargs) => {
+      yargs.positional('path', {
+        describe: 'Either the path of the serial device or hostname:port of network KISS device.',
+        type: 'string'
+      }).positional('port', {
+        describe: 'Server port for the shared device',
+        type: 'number'
+      }).option('baud', {
+        describe: 'Baud rate for serial device',
+        default: 1200
+      })
+    },
+    argv => startup(argv))
+  .help()
+  .argv;
 
 /*
   The pipeline is sort of like this:
     SerialKISSFrameEndpoint Endpoint -> sharePortToTCP -> ServerSocketKISSFrameEndpoint
 */
 
-var device=opt.argv[0];
-var port=opt.argv[1];
-var baud= opt.options.baud?parseInt(opt.options.baud):1200
 
-var sharedEndpoint=new SharedEndpoint( {
-  device: device,
-  port: port,
-  baud: baud
-});
-
-sharedEndpoint.on("listen", message => console.log(message));
-sharedEndpoint.on("clientConnect", message => console.log(message));
-sharedEndpoint.on("tncConnect", message => console.log(message));
-sharedEndpoint.on("tncDisconnect", message => console.log(message));
-sharedEndpoint.on("clientDisconnect", message => console.log(message));
-sharedEndpoint.on("error", message => console.log(message));
-
-sharedEndpoint.enable();

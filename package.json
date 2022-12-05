@@ -27,8 +27,8 @@
     "jasmine": "^2.99.0"
   },
   "dependencies": {
-    "node-getopt": "^0.2.3",
     "serialport": "10.5.0",
-    "utils-for-aprs": "3.0.0"
+    "utils-for-aprs": "3.0.0",
+    "yargs": "17.6.2"
   }
 }

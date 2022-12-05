@@ -69,7 +69,7 @@ const SharedEndpoint=function(options) {
   this.serverEndpoint=new ServerSocketKISSFrameEndpoint("0.0.0.0", options.port);
 
   // If the device happens to look like "host:port" then create a socket endpoint.
-  var res=/([^\:]+):([0-9]+)/.exec(options.device);
+  var res=/([^\:]+):([0-9]+)/.exec(options.path);
   if (res) {
     var host=res[1];
     var port=res[2];
@@ -77,7 +77,9 @@ const SharedEndpoint=function(options) {
     this.targetEndpoint.host=host;
     this.targetEndpoint.port=port;
   } else {
-    this.targetEndpoint=new SerialKISSFrameEndpoint(options.device, {baudRate: options.baud});
+    this.targetEndpoint=new SerialKISSFrameEndpoint({ 
+      path: options.path, baudRate: options.baud
+    });
   }
 
   // Log interesting events...
@@ -117,7 +119,7 @@ const SharedEndpoint=function(options) {
   });
 
   this.targetEndpoint.on('connect', connection => {
-    this.emit("tncConnect", "Connected to TNC on " + options.device + (res?"":" at " + options.baud + " baud."));
+    this.emit("tncConnect", "Connected to TNC on " + options.path + (res?"":" at " + options.baud + " baud."));
     this.allConnections.add(connection);
     connection.on('data', frame => {
       this.relayToAllBut(connection, frame);
